@@ -1,4 +1,3 @@
-
 <template>
   <div id="wrapper">
     <nav class="navbar is-dark">
