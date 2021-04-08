@@ -1,6 +1,7 @@
+
 <template>
- <div id="wrapper">
-   <nav class="navbar is-dark">
+  <div id="wrapper">
+    <nav class="navbar is-dark">
       <div class="navbar-brand">
         <router-link to="/" class="navbar-item"><strong>ShoePlanet</strong></router-link>
 
@@ -21,7 +22,7 @@
                 </div>
 
                 <div class="control">
-                  <button class="button is-primary">
+                  <button class="button is-success">
                       <span class="icon">
                       <i class="fas fa-search"></i>
                       </span>
@@ -33,8 +34,8 @@
         </div>
 
         <div class="navbar-end">
-          <router-link to="/summer" class="navbar-item">Heels</router-link>
-          <router-link to="/winter" class="navbar-item">Boots</router-link>
+          <router-link to="/heels" class="navbar-item">Heels</router-link>
+          <router-link to="/boots" class="navbar-item">Boots</router-link>
 
           <div class="navbar-item">
             <div class="buttons">
@@ -46,7 +47,7 @@
                 <router-link to="/log-in" class="button is-light">Log in</router-link>
               </template>
 
-              <router-link to="/cart" class="button is-primary">
+              <router-link to="/cart" class="button is-success">
                 <span class="icon"><i class="fas fa-shopping-cart"></i></span>
                 <span>Cart ({{ cartTotalLength }})</span>
               </router-link>
@@ -55,51 +56,55 @@
         </div>
       </div>
     </nav>
-   <div class="is-loading-bar has-text-centered" v-bind:class="{'is-loading': $store.state.isLoading }">
+
+    <div class="is-loading-bar has-text-centered" v-bind:class="{'is-loading': $store.state.isLoading }">
       <div class="lds-dual-ring"></div>
     </div>
 
-  <section class="section">
-   <router-view/>
+    <section class="section">
+      <router-view/>
+    </section>
 
-  </section>
-  <footer class ="footer">
-  <p class ="has-text-centered"> Copyright (c) 2021 </p>
-  </footer>
- </div>
-
+    <footer class="footer">
+      <p class="has-text-centered">Copyright (c) 2021</p>
+    </footer>
+  </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
       showMobileMenu: false,
-      cart:{
-      items:[]
+      cart: {
+        items: []
       }
-     
     }
   },
-  beforeCreate(){
-  this.$store.commit('initializeStore')
+  beforeCreate() {
+    this.$store.commit('initializeStore')
+    const token = this.$store.state.token
+    if (token) {
+        axios.defaults.headers.common['Authorization'] = "Token " + token
+    } else {
+        axios.defaults.headers.common['Authorization'] = ""
+    }
   },
-  mounted(){
-  this.cart = this.store.state.cart
+  mounted() {
+    this.cart = this.$store.state.cart
   },
-  computed:{
-  cartTotalLength(){
-  let totalLength = 0
-
-  for (let i = 0; i < this.cart.items.length; i++){
-  totalLength += this.cart.items[i].quantity
+  computed: {
+      cartTotalLength() {
+          let totalLength = 0
+          for (let i = 0; i < this.cart.items.length; i++) {
+              totalLength += this.cart.items[i].quantity
+          }
+          return totalLength
+      }
   }
-   return totalLength
-  }
-  }
-  }
+}
 </script>
-
 
 <style lang="scss">
 @import '../node_modules/bulma';

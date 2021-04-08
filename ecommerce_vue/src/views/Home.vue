@@ -1,17 +1,15 @@
 <template>
   <div class="home">
-   <section class="hero is-medium is-dark mb-6">
+    <section class="hero is-medium is-dark mb-6">
         <div class="hero-body has-text-centered">
             <p class="title mb-6">
                 Welcome to ShoePlanet
             </p>
             <p class="subtitle">
-                The best shoe store online
+                The best foot wear store online
             </p>
         </div>
     </section>
-   
-  </div>
 
     <div class="columns is-multiline">
       <div class="column is-12">
