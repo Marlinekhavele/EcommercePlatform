@@ -32,6 +32,10 @@ export default new Vuex.Store({
       localStorage.setItem('cart',JSON.stringify(state.cart))
     }
   },
+  setIsLoading(state, status){
+    state.isLoading = status
+
+  },
   actions: {
   },
   modules: {
