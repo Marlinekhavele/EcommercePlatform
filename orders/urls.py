@@ -1,7 +1,7 @@
 
 from django.urls import path
 
-from order import views
+from orders import views
 
 urlpatterns = [
     path('checkout/', views.checkout),
