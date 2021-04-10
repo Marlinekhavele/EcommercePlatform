@@ -29,6 +29,9 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = []
 
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+
+
 
 # Application definition
 
@@ -45,7 +48,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'djoser',
     #local
-    'products'
+    'products',
+    'orders'
 ]
 
 CORS_ALLOWED_ORIGINS = [
