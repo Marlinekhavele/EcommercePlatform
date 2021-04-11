@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from .models import Order, OrderItem
 
-from product.serializers import ProductSerializer
+from products.serializers import ProductSerializer
 
 class MyOrderItemSerializer(serializers.ModelSerializer):    
     product = ProductSerializer()
